@@ -1,3 +1,5 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/JustLevel/goombahub/main/typing.lua"))()
+
 local TeleportCheck = false
 Players.LocalPlayer.OnTeleport:Connect(function(State)
 	if (not TeleportCheck) then
@@ -5,5 +7,3 @@ Players.LocalPlayer.OnTeleport:Connect(function(State)
 		queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/TheFatGamer123/NewScript/main/CartiRR'))()")
 	end
 end)
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/JustLevel/goombahub/main/typing.lua"))()
