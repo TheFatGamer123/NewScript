@@ -1,0 +1,29 @@
+local Key = Enum.KeyCode.Q
+local ToggleKey = Enum.KeyCode.E
+local Toggle = false
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse()
+
+local ThrowingKnifeRemote = game:GetService("ReplicatedStorage").ThrowingKnifeRemotes.Throw
+local ThrowingKnifeName = "Throwing Knife V2"
+
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessedEvent)
+    if input.KeyCode == Key and not gameProcessedEvent then
+        Toggle = not Toggle
+    end
+end)
+
+game:GetService("RunService").Stepped:Connect(function()
+    if Toggle then
+        local throwingKnife = player.Character:FindFirstChild(ThrowingKnifeName)
+        if throwingKnife then
+            ThrowingKnifeRemote:FireServer(throwingKnife, mouse.Hit.p)
+        end
+    end
+end)
+
+mouse.KeyDown:Connect(function(key)
+    if key == ToggleKey then
+        Toggle = not Toggle
+    end
+end)

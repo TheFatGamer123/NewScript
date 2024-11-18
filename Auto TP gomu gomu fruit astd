@@ -1,0 +1,19 @@
+local player = game.Players.LocalPlayer
+local fruitParentName = "Rubber Rubber Fruit"
+
+local function teleportToFirstFruit()
+    local fruit = game.Workspace:FindFirstChild(fruitParentName)
+    if fruit then
+        local fruitMeshPart = fruit:FindFirstChildOfClass("MeshPart")
+        local humanoidRootPart = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+        
+        if fruitMeshPart and humanoidRootPart then
+            humanoidRootPart.CFrame = fruitMeshPart.CFrame
+        end
+    end
+end
+
+while true do
+    teleportToFirstFruit()
+    wait(1)  -- Wait for a second before checking again
+end

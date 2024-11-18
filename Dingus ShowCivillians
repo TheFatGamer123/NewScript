@@ -1,0 +1,18 @@
+local color = Color3.fromRGB(0, 0, 0)
+local sum = Color3.fromRGB(255, 255, 255)
+
+while true do wait()
+	for _, player in pairs(game:GetService("Workspace"):GetChildren()) do
+		if player:IsA("Model") then
+			local outline = player:FindFirstChild("PlayerOutline")
+			local nameDisplay = player:FindFirstChild("NameDisplay")
+			if outline and nameDisplay then
+				if outline.OutlineColor == sum or outline.OutlineColor == color then
+					nameDisplay.Enabled = true
+				else
+					nameDisplay.Enabled = false
+				end
+			end
+		end
+	end
+end

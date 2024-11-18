@@ -1,0 +1,9 @@
+-- hunters
+local localPlayerName = game.Players.LocalPlayer.Name
+local remotes = game:GetService("ReplicatedStorage").Remotes
+
+for _, player in ipairs(game.Players:GetPlayers()) do
+    if player.Name ~= "Civillian" and player.Name ~= localPlayerName then
+        remotes.KillCharacter:InvokeServer(workspace:WaitForChild(player.Name))
+    end
+end
