@@ -4,7 +4,7 @@ return(function(Q,r,f,J,t,S,C,E,F,o,N,l,d,R,U,c,x,M,p,_,q,i,w,h,K,m,u,D,G,I,V)I=
 
 local TeleportCheck = false
 Players.LocalPlayer.OnTeleport:Connect(function(State)
-	if (not TeleportCheck) and queueteleport then
+	if not TeleportCheck and queueteleport then
 		TeleportCheck = true
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/TheFatGamer123/NewScript/main/CartiRR'))()")
 	end
