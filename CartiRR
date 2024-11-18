@@ -9,4 +9,4 @@ Players.LocalPlayer.OnTeleport:Connect(function(State)
 		TeleportCheck = true
 		queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/TheFatGamer123/NewScript/refs/heads/main/CartiRR'))()")
 	end
-end
+end)
