@@ -1,0 +1,52 @@
+let eggModifier = setInterval(() => {
+
+  const scene = this?.prompt?.scene;
+  if (!scene) return;
+
+  const eggs = scene?.gameData?.eggs;
+  if (!eggs) return;
+
+  let speciesIndex = {};
+
+  // Egg logic
+  for (let egg of eggs) {
+
+    const species = egg._species;
+    speciesIndex[species] = (speciesIndex[species] || 0) + 1;
+    const order = speciesIndex[species];
+
+    // One of each variant tier for duplicates
+    if (order === 1) egg._variantTier = 2;
+    if (order === 2) egg._variantTier = 1;
+    if (order >= 3) egg._variantTier = 0;
+
+    if ([0,1].includes(egg._tier)) {
+      egg._hatchWaves = 1;
+      egg._overrideHiddenAbility = true;
+    }
+
+    if ([2,3].includes(egg._tier)) {
+      egg._isShiny = true;
+      egg._hatchWaves = 1;
+      egg._overrideHiddenAbility = true;
+    }
+
+  }
+
+  // Starter candy
+  const starters = scene?.gameData?.starterData;
+  if (starters) {
+    for (let i in starters) {
+      starters[i].candyCount = 250;
+    }
+  }
+
+  // Dex perfect IVs
+  const dex = scene?.gameData?.dexData;
+  if (dex) {
+    for (let i in dex) {
+      dex[i].ivs = [31,31,31,31,31,31];
+    }
+  }
+
+}, 500);
