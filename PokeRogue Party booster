@@ -1,0 +1,45 @@
+let partyModifier = setInterval(() => {
+
+  const scene = this?.prompt?.scene;
+  if (!scene) return;
+
+  // Infinite money
+  scene.money = Infinity;
+
+  // Party edits (0–5)
+  for (let i = 0; i <= 5; i++) {
+    const p = scene.party?.[i];
+    if (!p) continue;
+
+    p.pokerus = true;
+    p.variant = 2;
+    p.shiny = true;
+    p.passive = true;
+
+    // Perfect IVs
+    p.ivs = [31, 31, 31, 31, 31, 31];
+  }
+
+  // Modifier edits
+  const mods = scene.modifiers;
+  if (mods) {
+    for (let mod of mods) {
+
+      const id = mod?.type?.id;
+
+      if (id === "BASE_STAT_BOOSTER" || id === "ATTACK_TYPE_BOOSTER") {
+        if (mod.stackCount < 31) {
+          mod.stackCount = 31;
+        }
+      }
+
+      if (id === "SOUL_DEW") {
+        if (mod.stackCount < 10) {
+          mod.stackCount = 10;
+        }
+      }
+
+    }
+  }
+
+}, 500);
